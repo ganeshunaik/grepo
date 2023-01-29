@@ -41,8 +41,8 @@ write a dockerfile:
 6.CMD ["node","app.js"]
 
 build commend to build image:
-docker build . -t node-app
-sudo usermod -a -G docker $USER
+docker build . -t node-app[if permission denied run below command]
+sudo usermod -a -G docker $USER   [after this commend reboot system : sudo reboot] 
 docker run -d --name node-todo-app -p 8000:8000 todo-node-app
 Got to jenkins job
 Execute shell 
