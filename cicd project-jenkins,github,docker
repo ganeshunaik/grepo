@@ -13,7 +13,21 @@
    11  sudo systemctl status jenkins
    12  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
    
-   jenkins installed succesfully and integrated github to jenkins
+   jenkins installed succesfully:
+   
+   create a job and add clone git repository to jenkines and build and test
+   if build is successfull,
+   run this command in ec2 machine:
+    1. sudo apt install nodejs
+    2.sudo apt install npm
+    3.sudo npm install
+    4. node app.js
+    
+   enable port number 8000 in security group
+   [now check the app is running or not.]
+   jenkins and github integration done.
+----------------------------------------------------------
+
 
 installing docker:
 sudo apt install docker.io
