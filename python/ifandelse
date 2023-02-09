@@ -1,0 +1,6 @@
+is_pass=True
+if is_pass:
+    print("you pass")
+
+else:
+    print("you Fail")
