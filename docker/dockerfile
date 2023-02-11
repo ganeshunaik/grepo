@@ -1,7 +1,63 @@
 Dockerfile run the nginx application in docker image ubuntu 
 
+step 1: create a nginx-image folder 
+creat docker file and file folder inside nginx-image
+create index.html and default file inside the file folder
+
+nginx-image(Dir)
+     1.Dockerfile(file)
+     
+     2.files(Dir)    
+          1.index.html(file)
+          2.default(file)
+          
+step2: copy this below comands inside the default file      
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name _;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}   
+          
+
+step3:copy this below html command inside the index.html
+
+<html>
+  <head>
+    <title>WELCOME TO NGINX</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>WELCOME TO NGINX</h1>
+      <h2>Task is completed</h2>
+      <p>APPLICATION IS RUNNING SUCCESSFULLY</p>
+    </div>
+  </body>
+</html>
+
+
+step4: write the below dockerfile 
+
 FROM ubuntu
-RUN apt-get -y update && apt-get -y install nginx
-COPY default /etc/nginx/sites-available/default
-EXPOSE 80/tcp
+RUN  apt-get -y update && apt-get -y install nginx
+COPY files/default /etc/nginx/sites-available/default
+COPY files/index.html /usr/share/nginx/html/index.html
+EXPOSE 80
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+
+
+step5: type build command
+docker build -t nginx:1.0 .
+
+map the port number:
+docker run -d -p 9090:80 --name webserver nginx:1.0 
+
+
+
