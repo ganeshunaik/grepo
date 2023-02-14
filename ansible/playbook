@@ -1,0 +1,13 @@
+playbook with target,variables,tasks
+
+
+--- # my testing playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+          pkgname: httpd
+  tasks:
+                 - name: install httpd server on centos 7
+                   action: yum name="{{pkgname}}" state=installed
