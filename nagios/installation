@@ -1,0 +1,48 @@
+nagios installation setup:
+
+#prerequisites:
+sudo su
+yum install httpd php
+yum install gcc glibc glibc-common
+
+
+#usercreation:
+adduser -m nagios
+passwd nagios
+
+#gropucreation:
+groupadd nagioscmd
+usermod -a -G nagioscmd nagios
+usermod -a -G nagioscmd apache
+
+mkdir ~/downlods
+cd ~/downlods/
+
+#downloading nagios file:
+wget http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.0.8.tar.gz
+wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+tar zxvf nagios-4.0.8.tar.gz       #extracting nagios file
+cd nagios-4.0.8/
+./configure --with-command-group=nagioscmd
+make all                 #compiling file
+make install
+make install-init
+make install-config
+make install-commandmode
+make install-webconf
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+service httpd restart
+
+cd ~/downlods/
+tar zxvf nagios-plugins-2.0.3.tar.gz    #extracting plugins file
+cd nagios-plugins-2.0.3
+./configure --with-nagios-user=nagios --with-nagios-group=nagios
+ make install               #compiling plugins
+ chkconfig --add nagios
+ chkconfig nagios on
+ 
+ /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg       #pre flight check
+  service nagios start
+  service httpd restart
+  
+  #to check copy the public    public-ip/nagios/
