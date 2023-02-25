@@ -1,3 +1,5 @@
+userdata to install java and tomcat installation:
+
 #!/bin/bash
 hostname tomcat-server
 sudo amazon-linux-extras install java-openjdk11 -y
@@ -19,3 +21,16 @@ sudo ln -s /tomcat/apache-tomcat-9/bin/shutdown.sh
 tomcatup
 
 sudo yum update -y
+
+----------------------------------------------------------------------------
+
+#this data is used to give access host manager adding login credential in tomcat-user.xml file:
+
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+<user username="tomcat" password="micr0" roles="manager-gui"/>
+
