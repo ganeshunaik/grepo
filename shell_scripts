@@ -1,0 +1,10 @@
+*write a shell script to count the number of characters in given string
+
+clear
+echo enter the string
+read string
+w=`echo $string | wc -c
+c=`expr $w - 1
+echo the number of characters in a given string is $c
+
+--------------------------------------------------------------------------------------------------------
