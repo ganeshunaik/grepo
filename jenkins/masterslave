@@ -1,0 +1,8 @@
+master-slave password less authentication user data:
+
+#!/bin/bash
+sudo sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo service sshd restart
+sudo echo 'root:ganesh' | chpasswd
+hostname node-1
