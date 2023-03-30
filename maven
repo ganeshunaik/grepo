@@ -1,1 +1,6 @@
-hi everyone
+.bash_profile     environment set:
+
+M2_HOME=/opt/maven
+M2=/opt/maven/bin
+JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-1.amzn2.0.1.x86_64
+PATH=$PATH:$HOME/bin:$M2_HOME:$M2:$JAVA_HOME
